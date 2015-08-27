@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- logback configuration. This file should be put in JONAS_BASE/conf directory 
+    or in a dedicated classpath module in JBoss to easily modify it -->
+<configuration debug="true" scan="true" scanPeriod="30 seconds">
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <Target>System.out</Target>
+        <encoder>
+            <pattern>%d{dd/MM/yy HH:mm:ss.SSS} [%thread] %-5level %logger{70} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="file"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/tmp/bluepurse.log</file>
+        <encoder>
+            <pattern>%d{dd/MM/yy HH:mm:ss.SSS} [%thread] %-5level %logger{70} - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <maxIndex>3</maxIndex>
+            <FileNamePattern>/tmp/bluepurse.log.%i</FileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>1000KB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+    <logger name="net.waryss.mtools.bluepurse" level="WARN"/>
+    <root level="WARN">
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="file"/>
+    </root>
+</configuration>
