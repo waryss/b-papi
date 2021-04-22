@@ -11,7 +11,7 @@
 	<name>Blue Purse REST Webservice Maven Module</name>
 
 	<properties>
-		<jackson.version>2.5.3</jackson.version>
+		<jackson.version>2.9.10.7</jackson.version>
 	</properties>
 
 	<dependencies>
